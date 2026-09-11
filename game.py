@@ -1,7 +1,7 @@
 import random  # for shuffling and events that require probability
 import time  # for pacing
 
-global stack, hand, sanity, number, pity, knife
+
 
 hand = []
 stack = []
@@ -22,6 +22,7 @@ sanity = 10
 pity = 0
 
 def shuffling():
+    global stack, hand, cards
     for i in range(5):  # repeats this 5 times
         for card in cards:
             stack.append(card)  # adds all cards
@@ -29,6 +30,7 @@ def shuffling():
 
 number = 0
 def drawing():
+    global stack, hand, number
     if number >= len(stack):
         print("Game over. No more cards.")  # ending message
         quit()
@@ -39,6 +41,7 @@ def drawing():
 
 knife = "no"
 def play():
+    global hand, sanity, number, pity, knife
     action = input("Draw or play? (draw/play): ")
 
     # DRAW SECTION
