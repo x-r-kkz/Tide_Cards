@@ -20,4 +20,5 @@ A card game based off of my story, Tide. This is made to have a somewhat accurat
 
 ## Author
 **Name:** Chloe Sophia Ireneo
+
 **Email:** kkzuhra.bloom@gmail.com
