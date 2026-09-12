@@ -92,7 +92,7 @@ def play():
             elif hand[use - 1] == "Kiyomi: Fortune Teller":
                 print("K: \"So you wanna see the future, huh?\"")
                 time.sleep(2)
-                if number + 3 >= 40:
+                if number + 3 >= len(stack):
                     print("K: \"You've reached the end of the pile. Eh, I'll give you the rest anyway.\"")
                     print(stack[number:])
                 else:
@@ -385,9 +385,11 @@ def main():
             for line in text.splitlines():
                 print(line)
                 time.sleep(2)
-    else:
+    elif action.lower() == "y" or action.lower() == "yes":
         print("We shall start then,")
         time.sleep(2)
+    else:
+        main()
     print("Starting game...")
     time.sleep(2)
     shuffling()  # calls shuffling to prepare the stack
