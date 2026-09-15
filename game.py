@@ -311,85 +311,89 @@ def main():
     time.sleep(3)
     print("\nWARNING: This contains sensitive topics such as suicide and self-harm.\nFeel free to leave if you're uncomfortable.\n")
     time.sleep(3)
-    action = input("Have you played before? (y/n): ")
-    if action.lower() == "no" or action.lower() == "n":
-        text = """
-    Hello then.
-
-    start:
-    - You have 5 cards
-    - Stack has 65 cards
-    - You have 10 sanity
-    - Goal: Get to 100 sanity
-    ways to end:
-    - Finish the stack (bad)
-    - Get to 0 or lower sanity (bad)
-    - Get to 100 sanity (good)"""  # game instructions
-        for line in text.splitlines():
-            print(line)
+    while True:
+        action = input("Have you played before? (y/n): ")
+        if action.lower() == "no" or action.lower() == "n":
+            text = """
+        Hello then.
+    
+        start:
+        - You have 5 cards
+        - Stack has 65 cards
+        - You have 10 sanity
+        - Goal: Get to 100 sanity
+        ways to end:
+        - Finish the stack (bad)
+        - Get to 0 or lower sanity (bad)
+        - Get to 100 sanity (good)"""  # game instructions
+            for line in text.splitlines():
+                print(line)
+                time.sleep(2)
+            action = input("View card explanation? (y/n): ")
+            if action.lower() == "y" or action.lower() == "yes":
+                text = """
+        cards:
+        1. Kiyomi: Erologist
+            - Gives 3 sanity
+        2. Kiyomi: Fortune Teller
+            - shows you the next 3 cards in the pile
+        3. Kiyomi: Writer
+            - 1:1 chance to get +3 or -3 sanity
+        4. Mili: Lover
+            - 1:1 chance to get +5 or -5 sanity
+        5. Mili: Aichmophile
+            - Gives a knife if your sanity is >=10
+            - Takes 3 sanity if your sanity is <10
+        6. Mili: Kura (short for sakura bc i wanna)
+            - Gives 3 sanity
+        7. Malika: Roll
+            - You roll a dice and guess odd or even. Gives 3 sanity if correct, takes 3 sanity if not.
+        8. Malika: Jackpot
+            - Gives 3 sanity
+        9. Malika: Tiandeng
+            - Gives 5 sanity if your sanity is >=20.
+            - Takes 5 sanity if your sanity is <20.
+        10. Kzuhr: Lost Paradise
+            - Takes 5 sanity
+        11. Kzuhr: Sursurration
+            - Gives 3 sanity
+        12. Kaiin: Hide n' Seek
+            - 1:2 chance to get -5 or +3 sanity
+        13. Kaiin: Duty Calls
+            - 1:1 chance of +3 or -5 sanity"""  # card explanation
+                for line in text.splitlines():
+                    print(line)
+                    time.sleep(2)
+            action = input("View card interaction explanation? (y/n): ")
+            if action.lower() == "y" or action.lower() == "yes":
+                text = """
+        card interactions:
+        "Kiyomi: Erologist" & "Mili: Lover"
+        (when "Mili: Lover" is played)
+            - 1:4 chance of -10 or +5 sanity
+        Mili: Aichmophile & Kaiin: Duty Calls
+        (when "Mili: Aichmophile" is played, acquiring the knife, before "Kaiin: Duty Calls")
+            - Gives 5 sanity
+            - Loss of the knife unless "Mili: Aichmophile" is played again
+        "Mili: Kura" & "Kzuhr: Lost Paradise"
+        (when "Mili: Kura" is played)
+            - Gives 10 sanity
+        (when "Kzuhr: Lost Paradise" is played)
+            - Gives 5 sanity
+        "Malika: Roll" & "Malika: Jackpot"
+        (when "Malika: Roll" is played, and a loss is identified, before "Malika: Jackpot")
+            - Number of losses in all "Malika: Roll" games are counted as pity. This number is added to the sanity gain in "Malika: Jackpot\""""  # card interactions
+                for line in text.splitlines():
+                    print(line)
+                    time.sleep(2)
+            break
+        elif action.lower() == "y" or action.lower() == "yes":
+            print("We shall start then,")
             time.sleep(2)
-        action = input("View card explanation? (y/n): ")
-        if action.lower() == "y" or action.lower() == "yes":
-            text = """
-    cards:
-    1. Kiyomi: Erologist
-        - Gives 3 sanity
-    2. Kiyomi: Fortune Teller
-        - shows you the next 3 cards in the pile
-    3. Kiyomi: Writer
-        - 1:1 chance to get +3 or -3 sanity
-    4. Mili: Lover
-        - 1:1 chance to get +5 or -5 sanity
-    5. Mili: Aichmophile
-        - Gives a knife if your sanity is >=10
-        - Takes 3 sanity if your sanity is <10
-    6. Mili: Kura (short for sakura bc i wanna)
-        - Gives 3 sanity
-    7. Malika: Roll
-        - You roll a dice and guess odd or even. Gives 3 sanity if correct, takes 3 sanity if not.
-    8. Malika: Jackpot
-        - Gives 3 sanity
-    9. Malika: Tiandeng
-        - Gives 5 sanity if your sanity is >=20.
-        - Takes 5 sanity if your sanity is <20.
-    10. Kzuhr: Lost Paradise
-        - Takes 5 sanity
-    11. Kzuhr: Sursurration
-        - Gives 3 sanity
-    12. Kaiin: Hide n' Seek
-        - 1:2 chance to get -5 or +3 sanity
-    13. Kaiin: Duty Calls
-        - 1:1 chance of +3 or -5 sanity"""  # card explanation
-            for line in text.splitlines():
-                print(line)
-                time.sleep(2)
-        action = input("View card interaction explanation? (y/n): ")
-        if action.lower() == "y" or action.lower() == "yes":
-            text = """
-    card interactions:
-    "Kiyomi: Erologist" & "Mili: Lover"
-    (when "Mili: Lover" is played)
-        - 1:4 chance of -10 or +5 sanity
-    Mili: Aichmophile & Kaiin: Duty Calls
-    (when "Mili: Aichmophile" is played, acquiring the knife, before "Kaiin: Duty Calls")
-        - Gives 5 sanity
-        - Loss of the knife unless "Mili: Aichmophile" is played again
-    "Mili: Kura" & "Kzuhr: Lost Paradise"
-    (when "Mili: Kura" is played)
-        - Gives 10 sanity
-    (when "Kzuhr: Lost Paradise" is played)
-        - Gives 5 sanity
-    "Malika: Roll" & "Malika: Jackpot"
-    (when "Malika: Roll" is played, and a loss is identified, before "Malika: Jackpot")
-        - Number of losses in all "Malika: Roll" games are counted as pity. This number is added to the sanity gain in "Malika: Jackpot\""""  # card interactions
-            for line in text.splitlines():
-                print(line)
-                time.sleep(2)
-    elif action.lower() == "y" or action.lower() == "yes":
-        print("We shall start then,")
-        time.sleep(2)
-    else:
-        main()
+            break
+        else:
+            print("Please enter yes or no.")
+            time.sleep(2)
     print("Starting game...")
     time.sleep(2)
     shuffling()  # calls shuffling to prepare the stack
